@@ -1,5 +1,11 @@
 # kof2002um-nx installer — estado
 
+## 2026-11-07 (3): publicado
+
+- Repo https://github.com/tbittech/kof2002um-nx-installer (público), Pages desde `main` `/`: https://tbittech.github.io/kof2002um-nx-installer/
+- Arreglo: autocrlf guardaba el toml con LF (826 B) y el manifest pide 856 → el worker abortaba en Pages. `.gitattributes` con `release/** -text`; ahora se sirve con 856 B.
+- Verificado en vivo: index, sw.js, manifest, toml (856) y NRO (65.276.101). Falta una corrida completa en el sitio publicado con el paquete real.
+
 ## 2026-11-07 (2): SW probado, falta el push
 
 - Service worker probado con Chrome headless por CDP (script `swtest.mjs`: abre `#selftest`, recarga para tener controller, mete el paquete con DataTransfer, pulsa Crear): `selftest: 1157826914 bytes streamed, Content-Length 1157826914`, 40 s. Aviso conocido del paquete: falta 1 bloque en `data/B/bg/bgj1.bin` (se rellena con ceros).
