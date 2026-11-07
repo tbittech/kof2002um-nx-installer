@@ -1,5 +1,12 @@
 # kof2002um-nx installer — estado
 
+## 2026-11-07 (2): SW probado, falta el push
+
+- Service worker probado con Chrome headless por CDP (script `swtest.mjs`: abre `#selftest`, recarga para tener controller, mete el paquete con DataTransfer, pulsa Crear): `selftest: 1157826914 bytes streamed, Content-Length 1157826914`, 40 s. Aviso conocido del paquete: falta 1 bloque en `data/B/bg/bgj1.bin` (se rellena con ceros).
+- El usuario pidió subirlo a GitHub con Pages (dominio github.io). `gh repo create … --push` lo bloqueó el clasificador de auto mode; hay que correrlo a mano o darle permiso.
+- `release/kof2002um_nx.toml` sale modificado solo por CRLF; no commitear.
+- **Próximo paso**: `gh repo create tbittech/kof2002um-nx-installer --public --source . --remote origin --push`, después activar Pages (`main`, `/`) y abrir `https://tbittech.github.io/kof2002um-nx-installer/`.
+
 ## 2026-11-07: página instaladora hecha, falta publicar
 
 **Hecho**
