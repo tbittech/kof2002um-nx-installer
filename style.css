@@ -1,0 +1,58 @@
+:root {
+  --bg: #0d0f14;
+  --panel: #161a22;
+  --line: #262c38;
+  --text: #e8ebf2;
+  --muted: #9aa3b5;
+  --accent: #e8402f;
+  --accent-2: #f5a623;
+  --ok: #3ccf8e;
+  color-scheme: dark;
+}
+:root[data-theme="light"] { --bg: #f4f5f8; --panel: #fff; --line: #dde1e8; --text: #151821; --muted: #5b6474; color-scheme: light; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) { --bg: #f4f5f8; --panel: #fff; --line: #dde1e8; --text: #151821; --muted: #5b6474; color-scheme: light; }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: radial-gradient(1200px 500px at 50% -200px, color-mix(in srgb, var(--accent) 22%, transparent), transparent), var(--bg);
+  color: var(--text);
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+main { max-width: 760px; margin: 0 auto; padding: 32px 16px 48px; }
+header { position: relative; margin-bottom: 28px; }
+.kicker { margin: 0; color: var(--accent-2); font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+h1 { margin: 6px 0 10px; font-size: clamp(30px, 7vw, 46px); line-height: 1.05; font-weight: 800; letter-spacing: -.02em; }
+h1 span { color: var(--accent); }
+.lead { margin: 0; color: var(--muted); font-size: 17px; max-width: 60ch; }
+.lang { position: absolute; right: 0; top: 0; display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.lang button { border: 0; background: transparent; color: var(--muted); padding: 4px 10px; font: inherit; font-size: 13px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--line); color: var(--text); }
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+h2 { display: flex; align-items: center; gap: 12px; margin: 0 0 14px; font-size: 20px; }
+h2 b { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 15px; flex: none; }
+.choice { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 560px) { .choice { grid-template-columns: 1fr; } .lang { position: static; width: max-content; margin-bottom: 12px; } }
+.pick { position: relative; display: flex; flex-direction: column; gap: 4px; padding: 14px; border: 1px dashed var(--line); border-radius: 10px; cursor: pointer; transition: border-color .15s, background .15s; }
+.pick:hover, .pick:focus-within { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, transparent); }
+.pick input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.pick small { color: var(--muted); word-break: break-word; }
+.note { margin: 14px 0 0; padding: 10px 12px; border-left: 3px solid var(--accent-2); background: color-mix(in srgb, var(--accent-2) 8%, transparent); border-radius: 0 8px 8px 0; font-size: 15px; }
+.status { color: var(--muted); margin: 12px 0 0; font-size: 15px; word-break: break-word; }
+button.primary, #update {
+  font: inherit; font-weight: 700; padding: 11px 18px; border-radius: 10px; border: 0; cursor: pointer;
+  background: var(--accent); color: #fff; max-width: 100%;
+}
+#update { background: transparent; color: var(--text); border: 1px solid var(--line); }
+button:disabled { opacity: .45; cursor: not-allowed; }
+button:focus-visible, .pick:focus-within { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+.progress { margin-top: 16px; }
+.bar { height: 10px; border-radius: 6px; background: var(--line); overflow: hidden; }
+.bar > div { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .2s; }
+pre#log { margin: 14px 0 0; max-height: 200px; overflow: auto; padding: 10px; border-radius: 8px; background: var(--bg); border: 1px solid var(--line); font-size: 12.5px; white-space: pre-wrap; word-break: break-word; }
+ol { margin: 0; padding-left: 20px; }
+li { margin-bottom: 8px; }
+footer { color: var(--muted); font-size: 13px; padding: 8px 4px; }
+footer a { color: var(--accent-2); }
+.legal { max-width: 70ch; }

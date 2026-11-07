@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kof2002um-nx installer</title>
+<meta name="description" content="Builds the Nintendo Switch package of The King of Fighters 2002 Unlimited Match from your own Xbox 360 copy, inside your browser.">
+<link rel="stylesheet" href="style.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<main>
+  <header>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button>
+    </div>
+    <p class="kicker">Nintendo Switch · ReXGlue</p>
+    <h1>kof2002um-nx <span>installer</span></h1>
+    <p class="lead" data-t="lead">Builds the Nintendo Switch package of The King of Fighters 2002 Unlimited Match from your own Xbox 360 copy. Everything runs in this browser.</p>
+  </header>
+
+  <section>
+    <h2><b>1</b><span data-t="s1">Choose your copy</span></h2>
+    <div class="choice">
+      <label class="pick">
+        <input type="file" id="pickPackage">
+        <strong data-t="package">XBLA package</strong>
+        <small data-t="packageHint">The file inside Content/0000000000000000/584109AD/000D0000/ (a long hexadecimal name).</small>
+      </label>
+      <label class="pick">
+        <input type="file" id="pickFolder" webkitdirectory multiple>
+        <strong data-t="folder">Extracted folder</strong>
+        <small data-t="folderHint">The folder with default.xex and data/, already extracted from the package.</small>
+      </label>
+    </div>
+    <p class="note" data-t="own"><b>You need your own copy of the game.</b> The installer reads it to make game.nxpack and game.nxidx; it does not supply any game data of its own.</p>
+    <p id="chosen" class="status" data-t="nothing">Nothing chosen yet.</p>
+  </section>
+
+  <section>
+    <h2><b>2</b><span data-t="s2">Create the package</span></h2>
+    <p data-t="fullText">For a first install, create the whole package (the game data is read twice: once to check it, once to write it):</p>
+    <button type="button" id="create" class="primary" disabled data-t="create">Create kof2002um-nx.zip</button>
+    <div id="updateBox" hidden>
+      <p data-t="updateText">If the game is already installed and you only want the new .nro and .toml:</p>
+      <button type="button" id="update" data-t="update">Create kof2002um-nx-update.zip</button>
+    </div>
+    <div class="progress" hidden id="progressBox">
+      <div class="bar"><div id="bar"></div></div>
+      <p id="progressText" class="status"></p>
+    </div>
+    <pre id="log" hidden></pre>
+  </section>
+
+  <section>
+    <h2><b>3</b><span data-t="s3">Copy it to the Switch</span></h2>
+    <ol>
+      <li data-t="step1">Extract the downloaded .zip and copy the kof2002um-nx folder into sdmc:/switch/ (it ends up as sdmc:/switch/kof2002um-nx/).</li>
+      <li data-t="step2">Start kof2002um-nx.nro from the Homebrew Menu in title takeover mode (hold R while launching an installed game), or through a forwarder. Album applet mode does not give the game enough memory.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p><a href="https://github.com/tbittech/kof2002um-nx" data-t="source">Source code</a></p>
+    <p class="legal" data-t="legal">The King of Fighters is a trademark of SNK Corporation. kof2002um-nx is an unofficial fan project, not affiliated with or endorsed by SNK, Nintendo or Microsoft. This site hosts no game data and no game executable: your package or folder is read only inside your browser, is never uploaded, and its files go straight into the .zip saved on your computer.</p>
+  </footer>
+</main>
+</body>
+</html>
