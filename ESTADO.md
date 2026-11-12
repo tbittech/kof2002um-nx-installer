@@ -1,5 +1,11 @@
 # kof2002um-nx installer — estado
 
+## 2026-11-12: zip cortado en la descarga real
+
+- El usuario bajó `kof2002um-nx.zip` desde Pages: 1.063.083.190 B de 1.157.826.914; se corta dentro de `game.nxpack` y le falta el directorio central (WinRAR: corrupto). La página quedó en "99 %".
+- Causa probable: Chrome mata el service worker (unos 30 s inactivo, 5 min como tope por evento). El stream le llega por MessageChannel, que no cuenta como actividad. En headless tardó 40 s y no saltaba; en la PC real el pase de escritura tarda minutos.
+- Arreglo en `app.js`: ping `{type:'ping'}` al SW cada 10 s mientras dura la descarga (como StreamSaver.js); para en done o error. Sin commit, sin push y sin probar con una descarga larga.
+
 ## 2026-11-07 (3): publicado
 
 - Repo https://github.com/tbittech/kof2002um-nx-installer (público), Pages desde `main` `/`: https://tbittech.github.io/kof2002um-nx-installer/

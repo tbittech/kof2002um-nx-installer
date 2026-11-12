@@ -80,6 +80,15 @@ let swReady = null;
 if ('serviceWorker' in navigator && window.isSecureContext) {
   swReady = navigator.serviceWorker.register('./sw.js').then(() => navigator.serviceWorker.ready).catch(() => null);
 }
+// Chrome stops an idle service worker after ~30 s (and caps one event at 5 min); the zip data reaches it
+// through a MessageChannel, which does not count as activity, so a long write got cut short. A message
+// event every 10 s keeps it alive for the whole download (same trick as StreamSaver.js).
+let keepAlive = null;
+function startKeepAlive() {
+  stopKeepAlive();
+  keepAlive = setInterval(() => { const c = navigator.serviceWorker.controller; if (c) c.postMessage({ type: 'ping' }); }, 10000);
+}
+function stopKeepAlive() { if (keepAlive) { clearInterval(keepAlive); keepAlive = null; } }
 async function streamTarget(name, size) {
   const reg = swReady && (await swReady);
   if (!reg || !navigator.serviceWorker.controller) return null;
@@ -129,6 +138,7 @@ async function build(mode) {
 worker.onmessage = async ({ data: m }) => {
   if (m.type === 'progress') { progress(m.stage, m.value, m.name); return; }
   if (m.type === 'error') {
+    stopKeepAlive();
     setBusy(false);
     $('progressText').textContent = `Error: ${m.message}`;
     log(`Error: ${m.message}`);
@@ -151,6 +161,7 @@ worker.onmessage = async ({ data: m }) => {
     startedAt = Date.now();
     let target = await streamTarget(pendingName, m.size);
     if (target) {
+      startKeepAlive();
       worker.postMessage({ type: 'write', port: target.port }, [target.port]);
       if (location.hash === '#selftest') {
         // Reads the streamed zip without saving it (for testing the page).
@@ -175,6 +186,7 @@ worker.onmessage = async ({ data: m }) => {
     return;
   }
   if (m.type === 'done') {
+    stopKeepAlive();
     setBusy(false);
     $('bar').style.width = '100%';
     $('progressText').textContent = msg().done;
