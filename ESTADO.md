@@ -1,5 +1,11 @@
 # kof2002um-nx installer — estado
 
+## 2026-11-12 (2): build 20261111b y juego completo
+
+- El push del keep-alive anduvo: el usuario bajó el zip completo.
+- `release/` ahora trae la build `kof2002um-nx/switch/kof2002um-nx-20261111b` (la que tiene la grilla de personajes): NRO de 65.317.061 B y toml de 1222 B; `manifest.json` 2026-11-12.
+- El juego mostraba "Unlock Full Game" (modo prueba) porque el cvar `license_mask` del SDK vale 0. Se agregó `license_mask = 1` al toml (también al de la carpeta 20261111b). El NRO trae el cvar, pero falta probarlo en la consola.
+
 ## 2026-11-12: zip cortado en la descarga real
 
 - El usuario bajó `kof2002um-nx.zip` desde Pages: 1.063.083.190 B de 1.157.826.914; se corta dentro de `game.nxpack` y le falta el directorio central (WinRAR: corrupto). La página quedó en "99 %".
