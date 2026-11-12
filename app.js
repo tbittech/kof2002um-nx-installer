@@ -25,7 +25,7 @@ const ES = {
   newTitle: 'Novedades (build 2026-11-11b)',
   new1: '<b>Juego completo:</b> ya no queda en modo prueba ("Unlock Full Game").',
   new2: '<b>Selección de personajes arreglada:</b> se ven la grilla, los retratos y los fondos (antes salían en negro).',
-  new3: '<b>Más rápido:</b> unos 58 fps en las peleas en modo portátil (antes, unos 45).',
+  new3: '<b>60 fps sin overclock:</b> completamente jugable con los relojes de fábrica. Solo baja muy poquito en algunos especiales, y casi no se nota.',
   new4: '<b>Dos jugadores y Joy-Con suelto en horizontal</b> (ver Controles).',
   new5: '<b>Esta página:</b> la descarga del zip ya no se corta a la mitad en PCs lentas.',
   source: 'Código fuente',
